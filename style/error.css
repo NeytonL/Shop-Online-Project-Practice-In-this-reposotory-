@@ -1,0 +1,400 @@
+/* ------ GENERAL STYLES START  ------ */
+@font-face {
+  font-family: 'Pacifica';
+  src: url('/assets/fonts/PacificaCondesed.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NinbuSan';
+  src: url('/assets/fonts/nimbus-sans-l/NimbusSanL-Reg.otf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: 'NinbuSan', 'Pacifica', sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f4f0f0;
+  color: #fff;
+}
+
+li{
+  list-style: none;
+}
+
+span{
+  display: inline-block;
+  padding: 10px;
+  font-size: 3rem;
+  font-family: 'Pacifica', sans-serif;
+  color: #3182B5;
+  letter-spacing: 8px;
+}
+
+h1{
+  text-wrap: balance;
+  font-family: 'Pacifica';
+  font-size: 3.6rem;
+  text-align: center;
+  padding: 10px;
+  color: #3182B5;
+  font-weight: 100;
+}
+
+p{
+  font-family: 'NinbuSan';
+  line-height: 2rem;
+  text-wrap: pretty;
+  font-size: 1.1rem;
+  padding: 10px;
+  color: #3C4547;
+}
+
+
+/* ------ HEADER MOBILE SECTION ------ */
+.header{
+  background-color: #000;
+  color: #fff;
+  border-bottom: 1px solid #7aaaf099;
+  box-shadow: 0 0 30px #2221;
+  width: 100%;
+  max-width: 1990px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  container-type: inline-size;
+  container-name: header;
+}
+
+.header__mobile-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /*CONTAINER RELATIVE TO VALUES */
+  z-index: 10;
+}
+
+.mobile__checkbox{
+  display: none; /* HIDE CHEXBOX */
+}
+
+.mobile__open-nav{
+  position: absolute;
+  right: 10px;
+}
+
+.header__nav-mobile{
+  background-color: #000;
+  border-top: 1px solid #215779;
+  box-shadow: 0 10px 40px 0 #0006;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 79px;
+  display: none; /* HIDDEN FOR THE MOMENT  */
+}
+
+.header__nav-mobile ul{
+  width: 100%;
+  text-align: center;
+}
+
+.nav__link{
+  display: block;
+  color: #3182B5;
+  padding: 20px 0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: opacity .3s ease-in, transform .3s ease;
+}
+
+.nav__link:hover{
+  text-decoration: underline;
+  opacity: 0.74;
+  transform: translateY(-6px);
+}
+
+.nav__link.link--active{
+  color: #fff;
+}
+
+.mobile__checkbox:checked ~ .header__nav-mobile{
+  display: flex;
+  justify-content: center;
+}
+
+/* ------ HEADER MOBILE SECTION QUERIES ------ */
+
+@container header (min-width: 501px){
+  /* DISAPPEAR ALL LOGO */
+  .mobile__open-nav, .mobile__logo {
+    display: none;
+  }
+  /* HIDE MOBILE NAV (MORE SPECIFITY LEVEL) */
+  .header .header__mobile-container .header__nav-mobile{
+    display: none;
+  }
+  /* ALSO, THE SPAN NAME */
+  .mobile__logo-container span{
+    display: none;
+  }
+
+}
+
+/* ------ HEADER MOBILE SECTION END ------ */
+
+/* ---------------------------------------- */
+
+/* ------ HEADER DESKTOP SECTION ------ */
+.header__desktop-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav-desktop ul{
+  display: flex;
+  flex-direction: row;
+}
+
+/* FOR GREATER SPECIFITY LEVEL (OTHER DIRECTION) */
+.header__nav-desktop .header__colum {
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.header__nav-desktop a{
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.desktop__checkbox{
+  display: none;
+}
+
+.header__container{
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  top: 79px;
+  height: 100vh;
+  width: 100%;
+  max-width: 25vw;
+  display: none;
+}
+
+.desktop__checkbox:checked ~ .header__container {
+  display: block;
+}
+
+/* ------ HEADER DESKTOP SECTION QUERIES ------ */
+
+/* Cuando alcance el maximo, entonces que aparezca las opciones de mobile */
+@container header (max-width: 500px){
+  .header__desktop-container{
+    display: none;
+  }
+}
+
+@container header (min-width: 1199px){
+  .desktop__open-nav{
+    display: none;
+  }
+
+  /* RETURNING SECONDARY TO NORMAL */
+  .header__container{
+    position: static;
+    height: auto;
+    display: block;
+  }
+
+  /* Cambiar colum a row para volver a desktop y la alineaciond de los elementos*/
+  .header__nav-desktop .header__colum{
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  /* ADDING MARIGIN-LEFT AND MARGIN-LEFT IN DESKTOP */
+  .header__desktop-container{
+    margin: 0 50px 0 50px;
+  }
+}
+
+@container header (min-width: 1024px){
+  .desktop__open-nav{
+    display: none;
+  }
+  .header__container{
+    display: block;
+    position: static;
+    height: auto;
+  }
+
+  /* Cambiandola direccion y convertirlo a desktop*/
+  .header__nav-desktop .header__colum{
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .header__nav-desktop a{
+    font-size: 1rem;
+  }
+}
+
+
+/* ------ HEADER DESKTOP SECTION END ------ */
+
+/* ---------------------------------------- */
+
+/* ------ GENERAL MEDIAS QUERIES START ------ */
+@media screen and (min-width: 600px){
+  h1{
+    font-size: 3.8rem;
+  }
+}
+
+@media screen and (min-width: 799px ) {
+  h1{
+    font-size: 4rem;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  h1{
+    font-size: 5rem;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  h1{
+    font-size: 6rem;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  h1{
+    font-size: 7rem;
+  }
+}
+/* ------ GENERAL MEDIAS QUERIES END ------ */
+
+/* ---------------------------------------- */
+
+/* ------ FOOTER START ------ */
+.footer{
+  max-width: 1990px;
+  width: 100%;
+  padding: 20px;
+  background-color: #000;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__container-information, .footer__social-media{
+  flex-grow: 1;
+}
+
+.footer__container-information{
+  display: flex;
+  justify-content: center;
+  flex-grow: 0;
+}
+
+.footer__container-information p{
+  color: #fff;
+  font-size: 1rem;
+  text-wrap: pretty;
+  text-align: center;
+}
+
+.footer__social-media{
+  flex-grow: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.footer__link {
+  display: inline-block;
+  color: #3182B5;
+  text-decoration: none;
+  transition: transform .2s ease-in, opacity .2s ease-in; 
+}
+
+.footer__link:hover{
+  text-decoration: underline;
+  opacity: 0.74;
+  transform: translateY(-6px);
+}
+
+.link--img:hover{
+  opacity: 1;
+}
+
+.footer__media{
+  width: 40px;
+}
+/* ------ FOOTER QUERIES ------ */
+
+@media screen and (min-width: 600px ) {
+  .footer{
+    justify-content: space-between;
+  }
+}
+
+/* ------ FOOTER END ------ */
+
+/* ------ MAIN SECTION START ------ */
+.main{
+  background-color: #fff;
+  max-width: 1990px;
+  width: 100%;
+  padding: 16px;
+  container-type: inline-size;
+  container-name: main;
+  display: flex;
+  flex-flow: column;
+}
+
+.main__container-title{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.main__separator{
+  background-color: #215779;
+  width: 100px;
+  height: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* ------ MAIN SECTION END ------ */
+
+/* ------ GENERAL STYLES END ------ */
+
+/* ---------------------------------------- */
+
